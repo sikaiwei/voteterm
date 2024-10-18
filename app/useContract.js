@@ -19,6 +19,7 @@ const b = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8";
 export function useContract(){
     const {provider,connector,account} = useWeb3React();
     const [balance, setBalance] = useState(0);
+    const [balanceb, setBalanceb] = useState(0);
     // useEffect(()=>{
     //     const signer = provider.getSigner();
     //     if(!provider){
@@ -36,7 +37,7 @@ export function useContract(){
             return;
         }
         const contract = new Contract(tokenAddress, ABI.abi, signer);
-        await contract.approve(b,1);
+        await contract.approve(b,3);
     }
 
     const transfer = async ()=>{
@@ -57,6 +58,7 @@ export function useContract(){
         const balance = await contract.balanceOf(a);
         const balanceb = await contract.balanceOf(b);
         setBalance(balance.toString());
+        setBalanceb(balanceb.toString());
         console.log("balancea",balance.toString());
         console.log("balanceb",balanceb.toString());
     }
@@ -65,7 +67,8 @@ export function useContract(){
         approve,
         transfer,
         balanceOf,
-        balance
+        balance,
+        balanceb
     }
 }
 

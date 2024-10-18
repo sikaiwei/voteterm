@@ -5,7 +5,7 @@ import { useContract } from './useContract';
 
 function App() {
   const { isActive, account,  connector,  provider } = useWeb3React();
-  const {approve,transfer,balanceOf,balance} = useContract();
+  const {approve,transfer,balanceOf,balance, balanceb} = useContract();
   useEffect(()=>{
     setTimeout(()=>{
       const active = connector.activate();
@@ -41,7 +41,10 @@ function App() {
       balanceOf
     </button>
     <div>
-      {balance}
+      A: {balance}
+    </div>
+    <div>
+      B: {balanceb}
     </div>
     </>
   )
