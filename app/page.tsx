@@ -3,6 +3,9 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import App from './App.jsx'
 
+import Link from 'next/link'
+
+
 import { Web3Provider } from './Web3Provider.jsx'
 
 export default function Home() {
@@ -15,6 +18,10 @@ export default function Home() {
         <Web3Provider>
           <App />
         </Web3Provider>
+
+        <Link href="/about" className="">
+          Vote
+        </Link>
 
       </main>
       

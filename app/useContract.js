@@ -20,6 +20,7 @@ export function useContract(){
     const {provider,connector,account} = useWeb3React();
     const [balance, setBalance] = useState(0);
     const [balanceb, setBalanceb] = useState(0);
+    const [voteRes, setvoteRes] = useState([]);
     // useEffect(()=>{
     //     const signer = provider.getSigner();
     //     if(!provider){
@@ -63,12 +64,49 @@ export function useContract(){
         console.log("balanceb",balanceb.toString());
     }
 
+    const addCandidate = async (candidateName)=>{
+        console.log(candidateName, " in useContract.js")
+        const signer = provider.getSigner();
+        if(!provider){
+            return;
+        }
+        const contract = new Contract(tokenAddress, ABI.abi, signer);
+        await contract.addCandidate(candidateName);
+    }
+    
+    const vote = async (candidateId)=>{
+        console.log(candidateId, " in useContract.js")
+        const signer = provider.getSigner();
+        if(!provider){
+            return;
+        }
+        const contract = new Contract(tokenAddress, ABI.abi, signer);
+        await contract.vote(candidateId);
+    }
+    
+    const getAllCandidates = async ()=>{
+        console.log("getAllCandidates", " in useContract.js")
+        const signer = provider.getSigner();
+        if(!provider){
+            return;
+        }
+        const contract = new Contract(tokenAddress, ABI.abi, signer);
+        const voteRes = await contract.getAllCandidates();
+        setvoteRes(voteRes);
+        console.log("投票数据：", voteRes)
+    }
+
+
     return {
         approve,
         transfer,
         balanceOf,
         balance,
-        balanceb
+        balanceb,
+        addCandidate,
+        vote,
+        getAllCandidates,
+        voteRes
     }
 }
 
