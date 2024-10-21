@@ -9,7 +9,7 @@ import { Input, label, Button, Tooltip } from "antd";
 import { Web3Provider } from '../Web3Provider.jsx'
 import { useContract } from '../useContract';
 
-
+import Nav from '../nav/navigate';
 
 export default function Vote() {
 
@@ -32,6 +32,8 @@ export default function Vote() {
       }; 
   
     return (
+        <>
+        <Nav/>
         <div className={styles.page}>
         <main className={styles.main}>
         <Web3Provider>
@@ -49,14 +51,14 @@ export default function Vote() {
                         value={candidateName}
                         onChange={(e) => setcandidateName(e.target.value)}
                         className={styles.input}
-                    />
+                        />
                         <Button 
                         onClick={
                             async ()=>{
                                 console.log(candidateName)
                                 await addCandidate(candidateName);
                             }} 
-                        type="primary" size="large">
+                            type="primary" size="large">
                         添加
                     
                     </Button>
@@ -68,13 +70,13 @@ export default function Vote() {
                         value={candidateId}
                         onChange={(e) => setcandidateId(e.target.value)}
                         className={styles.input}
-                    />
+                        />
                         <Button 
                         onClick={
                             async ()=>{
                                 await vote(candidateId);
                             }} 
-                        type="primary" size="large">
+                            type="primary" size="large">
                         投票
                     
                     </Button>
@@ -86,7 +88,7 @@ export default function Vote() {
                             async ()=>{
                                 await getAllCandidates();
                             }} 
-                        type="primary" size="large">
+                            type="primary" size="large">
                         刷新数据
                     
                     </Button>
@@ -97,5 +99,6 @@ export default function Vote() {
         </Web3Provider>
         </main>
         </div>
+        </>
     )  
 }

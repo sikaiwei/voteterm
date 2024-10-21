@@ -1,19 +1,20 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import App from './App.jsx'
+import App from './App.jsx';
 
-import Link from 'next/link'
+import Link from 'next/link';
+import Nav from './nav/navigate';
 
 
 import { Web3Provider } from './Web3Provider.jsx'
 
 export default function Home() {
   return (
+    <>
+    <Nav/>
     <div className={styles.page}>
       <main className={styles.main}>
-  
-
         <li>Let us start to vote ......</li>
         <Web3Provider>
           <App />
@@ -26,5 +27,6 @@ export default function Home() {
       </main>
       
     </div>
+    </>
   );
 }
